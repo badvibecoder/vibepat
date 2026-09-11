@@ -1,0 +1,17 @@
+=== incident 4821 captured 2026-02-10 09:14 ===
+host pf-node-04 10.0.1.44
+nic enp6s0 mac 38:05:25:38:e7:01
+peer mac aa:bb:cc:dd:ee:ff
+--- kernel ---
+09:14:00 kernel: nvme0n1: starting reset
+09:14:01 kernel: nvme0n1: resetting controller
+09:14:02 kernel: nvme0n1: I/O error, dev nvme0n1, sector 12345
+09:14:03 kernel: nvme0n1: controller is down; will reset
+--- agent ---
+09:14:04 agent: WARN retry budget at 3
+09:14:05 agent: ERROR gave up after 3 retries
+09:14:06 agent: metric flush ok
+--- collector ---
+09:14:07 collector: scraped 10.0.2.20 in 41ms
+09:14:08 collector: scraped 10.0.2.21 in 12ms
+09:14:09 collector: nothing to report

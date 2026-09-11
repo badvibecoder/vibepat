@@ -1,0 +1,8 @@
+Timestamp 12:00:14:ab:12:a5 and MAC 38:00:14:ab:12:a5.
+Check 999.888.777.666 and 10.0.0.256 before pinging 10.0.0.1.
+dash form aa-bb-cc-dd-ee-ff and dotted form aabb.ccdd.eeff
+null 00:00:00:00:00:00 and broadcast ff:ff:ff:ff:ff:ff are reported
+prefix 10.0.0.1/24 and host:port 10.0.0.1:8080
+leading zeros 010.1.1.1 and short form 1.2.3 and long form 1.2.3.4.5
+IPv6 2001:db8::1 and loopback ::1 and link-local fe80::1
+clock 12:00:00 is not IPv6 and not a bdf

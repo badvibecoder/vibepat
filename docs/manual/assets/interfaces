@@ -1,0 +1,9 @@
+auto lo
+iface lo inet loopback
+    address 127.0.0.1/8
+
+auto enp6s0
+iface enp6s0 inet static
+    address 10.0.1.20/24
+    gateway 10.9.9.1
+    dns-nameservers 10.0.1.53 10.0.1.54

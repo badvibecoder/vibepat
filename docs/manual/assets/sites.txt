@@ -1,0 +1,3 @@
+node-01 site alpha-1 SN:AA-1001
+node-02 site bravo-2 SN:AA-1002
+node-03 site alpha-1 SN:AA-1003

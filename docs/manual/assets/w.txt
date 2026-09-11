@@ -1,0 +1,4 @@
+addr 10.0.0.1
+plain-b
+plain-c
+addr 10.0.0.4

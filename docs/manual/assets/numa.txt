@@ -1,0 +1,5 @@
+NUMA node: 0
+NUMA node(s): 2
+NUMA nodes: 4
+NUMA node0 CPU(s): 0-15
+NUMA node1 CPU(s): 16-31

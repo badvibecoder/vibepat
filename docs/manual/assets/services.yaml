@@ -1,0 +1,7 @@
+services:
+  api:
+    listen: 10.0.1.10
+    workers: 8
+  cache:
+    listen: 10.0.1.11
+    workers: 2

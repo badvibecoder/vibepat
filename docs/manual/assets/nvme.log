@@ -1,0 +1,5 @@
+nvme0n1: pci function 0000:04:00.0
+nvme0n1: queue depth 1024
+nvme0n1: starting reset
+nvme0n1: resetting controller
+nvme0n1: I/O error, dev nvme0n1, sector 12345

@@ -1,0 +1,20 @@
+[ERROR] nvme0n1: I/O error
+[error] retrying request
+[ERR] short form
+[CRITICAL] array degraded
+[CRIT] array degraded again
+[FATAL] giving up
+[PANIC] kernel oops
+ERR: colon prefix
+error: lower colon prefix
+ERROR: upper colon prefix
+failed to mount /data
+a failure was recorded
+critical threshold crossed
+fatal condition
+panic in worker thread
+error: none
+no errors found
+error_count=0
+the job errored
+2 failures detected

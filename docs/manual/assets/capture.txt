@@ -1,0 +1,5 @@
+interface: enp6s0
+mac: 38:05:25:38:e7:01
+peer: aa:bb:cc:dd:ee:ff
+legacy: 3805.2538.e701
+host: 10.0.1.44
