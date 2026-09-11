@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"vibepat/src/registry"
+	"github.com/badvibecoder/vibepat/internal/registry"
 )
 
 // nowFunc is the clock used to resolve the "today" scope. It is a variable so

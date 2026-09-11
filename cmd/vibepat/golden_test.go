@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"vibepat/src/registry"
+	"github.com/badvibecoder/vibepat/internal/registry"
 )
 
 // goldenLspci is real resolved-root `lspci -vv` output captured from the

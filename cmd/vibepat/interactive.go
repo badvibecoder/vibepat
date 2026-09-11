@@ -10,7 +10,7 @@ import (
 	prompt "github.com/elk-language/go-prompt"
 	istrings "github.com/elk-language/go-prompt/strings"
 
-	"vibepat/src/registry"
+	"github.com/badvibecoder/vibepat/internal/registry"
 )
 
 // replPrefix is the prompt string shown in interactive mode.

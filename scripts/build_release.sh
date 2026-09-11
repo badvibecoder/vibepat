@@ -47,9 +47,9 @@ LDFLAGS="-s -w"
 
 # Version metadata is injected when the output can be found, so a stripped
 # binary can still report what it is.
-VERSION="$(sed -n 's/^var version = "\(.*\)"$/\1/p' src/main.go | head -1 || true)"
+VERSION="$(sed -n 's/^var version = "\(.*\)"$/\1/p' cmd/vibepat/main.go | head -1 || true)"
 if [ -z "${VERSION}" ]; then
-	echo "warning: could not read version from main.go; building without it" >&2
+	echo "warning: could not read version from cmd/vibepat/main.go; building without it" >&2
 fi
 if [ -n "${VERSION}" ]; then
 	LDFLAGS="${LDFLAGS} -X main.version=${VERSION}"
@@ -82,7 +82,7 @@ for target in "${TARGETS[@]}"; do
 	CGO_ENABLED=0 \
 		GOOS="${target_os}" \
 		GOARCH="${target_arch}" \
-		go build -trimpath -ldflags="${LDFLAGS}" -o "${output_path}" ./src
+		go build -trimpath -ldflags="${LDFLAGS}" -o "${output_path}" ./cmd/vibepat
 
 	if [ ! -f "${output_path}" ]; then
 		echo "error: ${output_path} was not produced" >&2

@@ -20,7 +20,7 @@ file up before it writes.
 ## When to use it
 
 Five jobs it is built for. Each example uses real output — try them against
-`src/testdata/lspci.txt`, which ships in the repo.
+`cmd/vibepat/testdata/lspci.txt`, which ships in the repo.
 
 ---
 
@@ -31,7 +31,7 @@ riser, a mis-seated card, or a slot wired narrower than the card. `lspci` buries
 that in hundreds of lines.
 
 ```sh
-$ vibepat get all [bdf, link_downgrade] require all src/testdata/lspci.txt
+$ vibepat get all [bdf, link_downgrade] require all cmd/vibepat/testdata/lspci.txt
 {"matched_tokens":{"bdf":["00:01.2"],"link_downgrade":["link downgraded: speed 2.5GT/s of 32GT/s"]},...}
 {"matched_tokens":{"bdf":["00:02.1"],"link_downgrade":["link downgraded: speed 2.5GT/s of 32GT/s"]},...}
 ```
@@ -208,8 +208,17 @@ completes topic names.
 ## Install
 
 ```sh
-make build          # ./vibepat for the host platform
-make release        # static linux/amd64 + windows/amd64 into dist/
+# Prebuilt static binaries: linux/amd64 and windows/amd64, with checksums
+make release
+
+# Or build just for this host
+make build          # ./vibepat
+```
+
+With Go 1.27 or newer, install straight from the module:
+
+```sh
+go install github.com/badvibecoder/vibepat/cmd/vibepat@latest
 ```
 
 Single static binary, no runtime dependencies. See
@@ -276,7 +285,7 @@ Custom tokens go in `~/.vibepat/custom.yaml`; see
 ## Verified against real data
 
 The test suite includes a real root `lspci -vv` capture
-(`src/testdata/lspci.txt`, 1462 lines, 36 devices), not hand-written
+(`cmd/vibepat/testdata/lspci.txt`, 1462 lines, 36 devices), not hand-written
 approximations. It has repeatedly caught bugs that invented fixtures hid — most
 notably a mis-calibrated auto-detection threshold, because only 2.5% of real
 `lspci` lines are headers. See
@@ -289,13 +298,17 @@ make test    # 319 tests
 ## Layout
 
 ```
-src/          the Go package: all source and tests
-  registry/   the semantic token registry
-  testdata/   fixtures, including the real lspci capture
-docs/         documentation
-scripts/      build tooling
-Makefile      build, test, and release entry points
+cmd/vibepat/          the command: package main, CLI source and tests
+  testdata/           fixtures, including the real lspci capture
+internal/registry/    the semantic token registry, a separate package
+docs/                 documentation
+scripts/              build tooling
+Makefile              build, test, and release entry points
+RELEASE_NOTES.md      notes for the current release
 ```
+
+The layout follows the usual Go convention: command code under `cmd/`, packages
+not meant for import under `internal/`, and the module file at the root.
 
 ## License
 

@@ -17,7 +17,7 @@ import (
 	"os"
 	"strings"
 
-	"vibepat/src/registry"
+	"github.com/badvibecoder/vibepat/internal/registry"
 )
 
 // version is the semantic version reported by --version.
@@ -25,7 +25,11 @@ import (
 // It is a variable rather than a constant so that release builds can stamp it
 // with -ldflags "-X main.version=...". A constant cannot be overridden by the
 // linker, which would make such a flag silently ineffective.
-var version = "1.1.0"
+//
+// Keep this in step with the release tag: release notes and download URLs name
+// the tag, and a binary that reports a different version cannot be traced back
+// to the release it came from.
+var version = "0.1.0"
 
 // exitError distinguishes a usage/runtime failure from a successful run.
 const exitError = 1

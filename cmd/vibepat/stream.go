@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"io"
 
-	"vibepat/src/registry"
+	"github.com/badvibecoder/vibepat/internal/registry"
 )
 
 // streamWriter emits MatchResult values as NDJSON: one JSON object per line,

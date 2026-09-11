@@ -16,7 +16,7 @@ that this file caught:
 | `LnkSta: Speed 2.5GT/s (downgraded), Width x4` | The real parenthetical sits *before* the width field; invented fixtures put it last. |
 | 5 devices with a degraded PCIe link | The `link_downgrade` result was cross-checked against the machine's sysfs `current_link_speed` / `max_link_speed`, which agreed exactly. |
 
-`src/golden_test.go` asserts these properties directly. Any regeneration of this
+`cmd/vibepat/golden_test.go` asserts these properties directly. Any regeneration of this
 file must preserve them, or those tests will fail loudly rather than pass
 vacuously.
 

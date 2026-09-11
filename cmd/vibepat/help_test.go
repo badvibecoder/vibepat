@@ -7,7 +7,7 @@ import (
 	"strings"
 	"testing"
 
-	"vibepat/src/registry"
+	"github.com/badvibecoder/vibepat/internal/registry"
 )
 
 // The help system is the documented contract for everything else, so these tests

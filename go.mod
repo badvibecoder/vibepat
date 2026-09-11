@@ -1,4 +1,4 @@
-module vibepat
+module github.com/badvibecoder/vibepat
 
 go 1.27
 

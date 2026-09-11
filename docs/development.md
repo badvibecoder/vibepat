@@ -4,9 +4,9 @@
 
 | Path | Contents |
 | :--- | :--- |
-| `src/` | The entire Go package. All source and tests live here. |
-| `src/registry/` | The semantic token registry, a separate package. |
-| `src/testdata/` | Test fixtures, including the real `lspci` capture. |
+| `cmd/vibepat/` | The command: `package main`, all CLI source and tests. |
+| `cmd/vibepat/testdata/` | Test fixtures, including the real `lspci` capture. |
+| `internal/registry/` | The semantic token registry, a separate package. |
 | `scripts/` | Build tooling. |
 | `docs/` | This documentation. |
 | `go.mod`, `go.sum` | Module definition. Must stay at the repository root; the Go toolchain requires it. |
@@ -91,10 +91,18 @@ DIST_DIR=/tmp/out scripts/build_release.sh   # override the output directory
   files.
 
 Checksums are generated from inside `dist/`, so `sha256sum -c checksums.txt`
-works when run from that directory:
+works when run from that directory, where both artifacts are present:
 
 ```sh
 cd dist && sha256sum -c checksums.txt
+```
+
+Note the distinction for anyone verifying a *download*: `checksums.txt` lists
+every artifact, so a user who fetched only one binary must verify just that line,
+or `sha256sum` reports the missing one as unreadable:
+
+```sh
+grep vibepat-linux-amd64 checksums.txt | sha256sum -c -
 ```
 
 ## Testing
@@ -118,7 +126,7 @@ The suite is layered deliberately:
 Two conventions worth keeping:
 
 - **Verify against real data, not invented data.** Hand-written fixtures
-  repeatedly hid bugs that `src/testdata/lspci.txt` exposed — a mis-calibrated
+  repeatedly hid bugs that `cmd/vibepat/testdata/lspci.txt` exposed — a mis-calibrated
   detection threshold, tab-versus-space indentation, and the exact position of
   lspci's `(downgraded)` parenthetical. When adding a heuristic, test it against
   real output from a real machine.

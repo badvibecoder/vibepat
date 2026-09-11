@@ -10,7 +10,7 @@ import (
 
 	prompt "github.com/elk-language/go-prompt"
 
-	"vibepat/src/registry"
+	"github.com/badvibecoder/vibepat/internal/registry"
 )
 
 // TestParseGetAllBracketedTargets is the spec's headline parser gate.

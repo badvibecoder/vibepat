@@ -9,12 +9,12 @@ import (
 	"testing"
 )
 
-// repoRoot resolves a path relative to the module root, which is one level above
-// the src/ package directory. Tests are run from their own package directory, so
-// a bare "Makefile" would not resolve.
+// repoRoot resolves a path relative to the module root, which is two levels above
+// the cmd/vibepat package directory. Tests run from their own package directory,
+// so a bare "Makefile" would not resolve.
 func repoRoot(t *testing.T, parts ...string) string {
 	t.Helper()
-	return filepath.Join(append([]string{".."}, parts...)...)
+	return filepath.Join(append([]string{"..", ".."}, parts...)...)
 }
 
 // These tests guard the release build system. A release that silently stops
@@ -30,7 +30,7 @@ func TestWindowsCrossCompiles(t *testing.T) {
 	}
 
 	out := filepath.Join(t.TempDir(), "vibepat.exe")
-	cmd := exec.Command("go", "build", "-o", out, "./src")
+	cmd := exec.Command("go", "build", "-o", out, "./cmd/vibepat")
 	cmd.Env = append(os.Environ(),
 		"CGO_ENABLED=0",
 		"GOOS=windows",
@@ -75,7 +75,7 @@ func TestLinuxReleaseIsStaticallyLinked(t *testing.T) {
 	}
 
 	out := filepath.Join(t.TempDir(), "vibepat-linux-amd64")
-	cmd := exec.Command("go", "build", "-trimpath", "-ldflags=-s -w", "-o", out, "./src")
+	cmd := exec.Command("go", "build", "-trimpath", "-ldflags=-s -w", "-o", out, "./cmd/vibepat")
 	cmd.Env = append(os.Environ(), "CGO_ENABLED=0", "GOOS=linux", "GOARCH=amd64")
 	cmd.Dir = repoRoot(t)
 	if output, err := cmd.CombinedOutput(); err != nil {
@@ -160,7 +160,7 @@ func TestMakefileDefinesReleaseTargets(t *testing.T) {
 // constant, because the linker cannot override a constant and the release would
 // silently ship an unstamped binary.
 func TestVersionIsLinkerInjectable(t *testing.T) {
-	data, err := os.ReadFile(repoRoot(t, "src", "main.go"))
+	data, err := os.ReadFile(repoRoot(t, "cmd", "vibepat", "main.go"))
 	if err != nil {
 		t.Fatalf("read main.go: %v", err)
 	}

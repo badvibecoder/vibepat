@@ -22,7 +22,7 @@ DIST_DIR := $(CURDIR)/dist
 # -s strips the symbol table and -w strips DWARF debug info, which is most of an
 # unstripped Go binary. Release builds stamp the version so a stripped binary can
 # still report what it is.
-VERSION  := $(shell sed -n 's/^var version = "\(.*\)"$$/\1/p' src/main.go | head -1)
+VERSION  := $(shell sed -n 's/^var version = "\(.*\)"$$/\1/p' cmd/vibepat/main.go | head -1)
 LDFLAGS  := -s -w
 ifneq ($(VERSION),)
 LDFLAGS  += -X main.version=$(VERSION)
@@ -36,10 +36,10 @@ all: build
 
 # --- development -----------------------------------------------------------
 
-# The Go package lives in src/, so the repository root stays free of source and
-# the whole buildable tree is one directory.
+# The source lives in cmd/ and internal/, the conventional Go layout, so the
+# repository root holds only the module file, build tooling, and documentation.
 build:
-	go build -o vibepat ./src
+	go build -o vibepat ./cmd/vibepat
 
 test:
 	go test ./... -count=1
@@ -50,7 +50,7 @@ vet:
 # Enumerate source files explicitly: `gofmt -w .` would descend into the local
 # module cache and report unformatted third-party code.
 fmt:
-	gofmt -l -w src/*.go src/registry/*.go
+	gofmt -l -w cmd/vibepat/*.go internal/registry/*.go
 
 # The local caches hold downloaded modules whose files are read-only, so the
 # permission bits are relaxed before removal. A leading `-` keeps clean
